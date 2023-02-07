@@ -34,13 +34,15 @@ export const getListFiles = (req, res) => {
     const directoryPath = __basedir + UPLOAD_FOLDER;
     console.log(`Requesting files from ${directoryPath}`);
     fs.readdir(directoryPath, function (err, files) {
-        if (err) {
+        let fileInfos = [];
+
+        if (err.code == "ENOENT") {
+            return res.status(200).send(fileInfos);
+        } else if (err) {
             return res.status(500).send({
                 message: "Unable to scan files!: " + err,
             });
         }
-
-        let fileInfos = [];
 
         files.forEach((file) => {
             fileInfos.push({
