@@ -18,7 +18,7 @@ initRoutes(app);
 
 // let host = "localhost"
 let port = 8081;
-global.__baseUrl = `http://${host}:${port}/`
+// global.__baseUrl = `http://${host}:${port}/`
 
 app.listen(port, host, () => {
     console.log(`Running at PORT: ${port}`);
