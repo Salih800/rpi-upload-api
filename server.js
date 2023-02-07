@@ -16,9 +16,7 @@ import {routes as initRoutes} from"./src/routes/index.js";
 app.use(express.urlencoded({extended: true}));
 initRoutes(app);
 
-// let host = "localhost"
 let port = 8081;
-// global.__baseUrl = `http://${host}:${port}/`
 
 app.listen(port, () => {
     console.log(`Running at PORT: ${port}`);

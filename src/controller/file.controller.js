@@ -66,8 +66,8 @@ export const getListFiles = (req, res) => {
 export const download = (req, res) => {
     const fileName = req.params.name;
     const directoryPath = __basedir + UPLOAD_FOLDER;
-    console.log(`Requesting file ${fileName} from ${directoryPath}`);
-    
+    console.log(`Requesting file: ${fileName}`);
+
     res.download(directoryPath + fileName, fileName, (err) => {
         if (err) {
             if (err.code == "ENOENT") {
