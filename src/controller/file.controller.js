@@ -63,7 +63,7 @@ export const getListFiles = (req, res) => {
         files.forEach((file) => {
             fileInfos.push({
                 name: file,
-                url: baseurl + '/files/' + file,
+                url: baseurl + 'files/' + file,
             });
         });
 
@@ -76,14 +76,16 @@ export const download = (req, res) => {
     const directoryPath = __basedir + UPLOAD_FOLDER;
 
     res.download(directoryPath + fileName, fileName, (err) => {
-        if (err.code == "ENOENT") {
-            res.status(404).send({
-                message: "File not found: " + fileName,
-            });
-        } else if (err) {
-            res.status(500).send({
-                message: "Could not download file: " + err,
-            });
+        if (err) {
+            if (err.code == "ENOENT") {
+                res.status(404).send({
+                    message: "File not found: " + fileName,
+                });
+            } else {
+                res.status(500).send({
+                    message: "Could not download file: " + err,
+                });
+            }
         }
     });
 };
