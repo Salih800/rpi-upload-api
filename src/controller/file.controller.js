@@ -35,24 +35,35 @@ export const upload = async (req, res) => {
 
 export const getListFiles = (req, res) => {
     var baseurl = getBaseUrl(req);
-    console.log(`baseurl: ${baseurl}`);
+    console.log(`Base URL: ${baseurl}`);
     const directoryPath = __basedir + UPLOAD_FOLDER;
     console.log(`Requesting files from ${directoryPath}`);
     fs.readdir(directoryPath, function (err, files) {
         let fileInfos = [];
 
-        if (err.code == "ENOENT") {
-            return res.status(200).send(fileInfos);
-        } else if (err) {
-            return res.status(500).send({
-                message: "Unable to scan files!: " + err,
-            });
+        if (err) {
+            if (err.code == "ENOENT") {
+                console.log(`Directory ${directoryPath} not found.`);
+                return res.status(200).send(fileInfos);
+            } else {
+                console.log(`Error reading directory ${directoryPath}: ${err}`);
+                return res.status(500).send({
+                    message: "Unable to scan files!: " + err,
+                });
+            }
         }
+        // if (err.code == "ENOENT") {
+        //     return res.status(200).send(fileInfos);
+        // } else if (err) {
+        //     return res.status(500).send({
+        //         message: "Unable to scan files!: " + err,
+        //     });
+        // }
 
         files.forEach((file) => {
             fileInfos.push({
                 name: file,
-                url: __baseUrl + "files/" + file,
+                url: baseurl + '/files/' + file,
             });
         });
 
