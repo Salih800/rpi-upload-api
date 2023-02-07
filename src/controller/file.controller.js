@@ -1,5 +1,8 @@
-import {uploadFileMiddleWare as uploadFile} from "../middleware/upload.js";
 import fs from "fs";
+
+import { getBaseUrl } from "../utils/getBaseUrl.js";
+import {uploadFileMiddleWare as uploadFile} from "../middleware/upload.js";
+
 import {UPLOAD_FOLDER} from "../constants/index.js";
 
 export const upload = async (req, res) => {
@@ -31,6 +34,8 @@ export const upload = async (req, res) => {
 };
 
 export const getListFiles = (req, res) => {
+    var baseurl = getBaseUrl(req);
+    console.log(`baseurl: ${baseurl}`);
     const directoryPath = __basedir + UPLOAD_FOLDER;
     console.log(`Requesting files from ${directoryPath}`);
     fs.readdir(directoryPath, function (err, files) {
