@@ -21,5 +21,5 @@ let port = 8081;
 global.__baseUrl = `http://${host}:${port}/`
 
 app.listen(port, host, () => {
-    console.log(`Running at ${host}:${port}`);
+    console.log(`Running at PORT: ${port}`);
 });
