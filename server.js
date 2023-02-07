@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 initRoutes(app);
 
 let host = "localhost"
-let port = 8080;
+let port = 8081;
 global.__baseUrl = `http://${host}:${port}/`
 
 app.listen(port, host, () => {
