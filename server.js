@@ -20,6 +20,6 @@ initRoutes(app);
 let port = 8081;
 // global.__baseUrl = `http://${host}:${port}/`
 
-app.listen(port, host, () => {
+app.listen(port, () => {
     console.log(`Running at PORT: ${port}`);
 });
