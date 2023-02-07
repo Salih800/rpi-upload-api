@@ -1,9 +1,9 @@
 import fs from "fs";
 
 import { getBaseUrl } from "../utils/getBaseUrl.js";
-import {uploadFileMiddleWare as uploadFile} from "../middleware/upload.js";
+import { uploadFileMiddleWare as uploadFile } from "../middleware/upload.js";
 
-import {UPLOAD_FOLDER} from "../constants/index.js";
+import { UPLOAD_FOLDER } from "../constants/index.js";
 
 export const upload = async (req, res) => {
     try {
@@ -11,8 +11,8 @@ export const upload = async (req, res) => {
 
         if (req.file == undefined) {
             return res.status(400).send(
-                {message: "Please upload a file!"}
-                );
+                { message: "Please upload a file!" }
+            );
         }
 
         res.status(200).send({
