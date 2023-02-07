@@ -82,3 +82,19 @@ export const download = (req, res) => {
         }
     });
 };
+
+export const deleteFile = (req, res) => {
+    console.log(`Deleting file: ${req.params.name}`);
+    const directoryPath = __basedir + UPLOAD_FOLDER;
+    const filePath = directoryPath + req.params.name;
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        res.status(200).send({
+            message: "File deleted successfully: " + req.params.name,
+        });
+    } else {
+        res.status(404).send({
+            message: "File not found: " + req.params.name,
+        });
+    }
+};
