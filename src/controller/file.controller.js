@@ -34,8 +34,7 @@ export const upload = async (req, res) => {
 };
 
 export const getListFiles = (req, res) => {
-    var baseurl = getBaseUrl(req);
-    console.log(`Base URL: ${baseurl}`);
+    const baseurl = getBaseUrl(req);
     const directoryPath = __basedir + UPLOAD_FOLDER;
     console.log(`Requesting files from ${directoryPath}`);
     fs.readdir(directoryPath, function (err, files) {
@@ -52,13 +51,6 @@ export const getListFiles = (req, res) => {
                 });
             }
         }
-        // if (err.code == "ENOENT") {
-        //     return res.status(200).send(fileInfos);
-        // } else if (err) {
-        //     return res.status(500).send({
-        //         message: "Unable to scan files!: " + err,
-        //     });
-        // }
 
         files.forEach((file) => {
             fileInfos.push({
@@ -74,7 +66,8 @@ export const getListFiles = (req, res) => {
 export const download = (req, res) => {
     const fileName = req.params.name;
     const directoryPath = __basedir + UPLOAD_FOLDER;
-
+    console.log(`Requesting file ${fileName} from ${directoryPath}`);
+    
     res.download(directoryPath + fileName, fileName, (err) => {
         if (err) {
             if (err.code == "ENOENT") {
