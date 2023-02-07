@@ -1,3 +1,7 @@
+node_modules/
+resources/static/assets/uploads/
+test_scripts/
+
 # Logs
 logs
 *.log

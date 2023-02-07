@@ -1,0 +1,1 @@
+export const UPLOAD_FOLDER = '/resources/static/assets/uploads/'
